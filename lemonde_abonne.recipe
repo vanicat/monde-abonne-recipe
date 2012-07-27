@@ -69,6 +69,8 @@ class LeMondeAbonne(BasicNewsRecipe):
         ltime = time.localtime(second)
         url = time.strftime(self.zipurl_format, ltime)
 
+        self.timefmt=time.strftime(self.timefmt, ltime)
+
         response = browser.open(url)
 
         tmp = PersistentTemporaryFile(suffix='.zip')
