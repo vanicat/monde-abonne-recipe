@@ -8,6 +8,7 @@ Lemonde.fr: Version abonnée
 
 
 import os, zipfile, re, time
+from calibre.constants import preferred_encoding
 
 from calibre.web.feeds.news import BasicNewsRecipe
 from calibre.ebooks.BeautifulSoup import BeautifulSoup
