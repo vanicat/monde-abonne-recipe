@@ -77,7 +77,7 @@ class LeMondeAbonne(BasicNewsRecipe):
         ltime = time.localtime(second)
         url = time.strftime(self.zipurl_format, ltime)
 
-        self.timefmt=time.strftime(self.timefmt, ltime)
+        self.timefmt=time.strftime("%A %d %B %Y", ltime).decode(preferred_encoding)
 
         response = browser.open(url)
 
