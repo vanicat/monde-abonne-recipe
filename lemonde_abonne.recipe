@@ -43,6 +43,8 @@ class LeMondeAbonne(BasicNewsRecipe):
 
     keep_only_tags = [ dict(name="div", attrs={ 'class': 'po-prti' }),  dict(name=['h1']), dict(name='div', attrs={ 'class': 'photo' }), dict(name='div', attrs={ 'class': 'po-ti2' }), dict(name='div', attrs={ 'class': 'ar-txt' }), dict(name='div', attrs={ 'class': 'po_rtcol' }) ]
 
+    article_id_pattern = re.compile("[0-9]+\\.html")
+    article_url_format = 'http://www.lemonde.fr/journalelectronique/donnees/protege/%Y%m%d/html/'
 
     def get_browser(self):
         br = BasicNewsRecipe.get_browser()
@@ -53,11 +55,6 @@ class LeMondeAbonne(BasicNewsRecipe):
             br['password'] = self.password
             response = br.submit()
         return br
-
-    articles_are_obfuscated=True
-
-    def get_obfuscated_article(self, url):
-        return os.path.join(self.articles_path, url)
 
     decalage = 24 * 60 * 60     # today Monde has tomorow date
 
@@ -101,6 +98,8 @@ class LeMondeAbonne(BasicNewsRecipe):
 
         flux = []
 
+        article_url = time.strftime(self.article_url_format, ltime)
+
         for i in range(nb_index_files):
             filename = os.path.join(path, "selection_%d.html" % (i + 1))
             tmp = open(filename,'r')
@@ -113,9 +112,11 @@ class LeMondeAbonne(BasicNewsRecipe):
             soup = BeautifulSoup(tmp)
             articles = []
             for link in soup.findAll("a"):
+                article_file = link['href']
+                article_id=self.article_id_pattern.search(article_file).group()
                 article = {
                     'title': link.contents[0],
-                    'url': link['href'],
+                    'url': article_url + article_id,
                     'descripion': '',
                     'content': ''
                     }
