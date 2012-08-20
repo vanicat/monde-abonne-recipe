@@ -59,10 +59,7 @@ class LeMondeAbonne(BasicNewsRecipe):
     decalage = 24 * 60 * 60     # today Monde has tomorow date
 
     def get_cover_url(self):
-        second = time.time()
-        second += self.decalage
-        ltime = time.localtime(second)
-        url = time.strftime(self.coverurl_format, ltime)
+        url = time.strftime(self.coverurl_format, self.ltime)
         return self.articles_path + url
 
     def parse_index(self):
@@ -70,10 +67,12 @@ class LeMondeAbonne(BasicNewsRecipe):
 
         second = time.time()
         second += self.decalage
-        ltime = time.localtime(second)
-        url = time.strftime(self.zipurl_format, ltime)
 
-        self.timefmt=time.strftime(" %A %d %B %Y", ltime).decode(preferred_encoding)
+        self.ltime = time.gmtime(second)
+
+        url = time.strftime(self.zipurl_format,self.ltime)
+
+        self.timefmt=time.strftime(" %A %d %B %Y", self.ltime).decode(preferred_encoding)
 
         response = browser.open(url)
 
@@ -88,7 +87,7 @@ class LeMondeAbonne(BasicNewsRecipe):
         zfile.extractall(self.output_dir)
         zfile.close()
 
-        path = os.path.join(self.output_dir, time.strftime(self.path_format, ltime), "data")
+        path = os.path.join(self.output_dir, time.strftime(self.path_format, self.ltime), "data")
 
         self.articles_path = path
 
@@ -98,7 +97,7 @@ class LeMondeAbonne(BasicNewsRecipe):
 
         flux = []
 
-        article_url = time.strftime(self.article_url_format, ltime)
+        article_url = time.strftime(self.article_url_format, self.ltime)
 
         for i in range(nb_index_files):
             filename = os.path.join(path, "selection_%d.html" % (i + 1))
