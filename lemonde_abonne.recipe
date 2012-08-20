@@ -38,7 +38,7 @@ class LeMondeAbonne(BasicNewsRecipe):
                 '''
 
     zipurl_format = 'http://medias.lemonde.fr/abonnes/editionelectronique/%Y%m%d/html/%y%m%d.zip'
-    coverurl_format = 'http://abonnes.lemonde.fr/titresdumonde/%y%m%d/1.jpg'
+    coverurl_format = '/img/%y%m%d01.jpg'
     path_format = "%y%m%d"
     login_url = 'http://www.lemonde.fr/web/journal_electronique/identification/1,56-0,45-0,0.html'
 
@@ -68,7 +68,7 @@ class LeMondeAbonne(BasicNewsRecipe):
         second += self.decalage
         ltime = time.localtime(second)
         url = time.strftime(self.coverurl_format, ltime)
-        return url
+        return self.articles_path + url
 
     def parse_index(self):
         browser = self.get_browser()
