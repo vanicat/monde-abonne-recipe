@@ -23,7 +23,6 @@ class LeMondeAbonne(BasicNewsRecipe):
     language              = 'fr'
     needs_subscription    = True
 
-    use_embedded_content   = False
     no_stylesheets         = True
 
     extra_css = '''
