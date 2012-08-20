@@ -41,8 +41,7 @@ class LeMondeAbonne(BasicNewsRecipe):
     path_format = "%y%m%d"
     login_url = 'http://www.lemonde.fr/web/journal_electronique/identification/1,56-0,45-0,0.html'
 
-    keep_only_tags = [ dict(name='span'), dict(name='p') ]
-
+    keep_only_tags = [ dict(name="div", attrs={ 'class': 'po-prti' }),  dict(name=['h1']), dict(name='div', attrs={ 'class': 'photo' }), dict(name='div', attrs={ 'class': 'po-ti2' }), dict(name='div', attrs={ 'class': 'ar-txt' }), dict(name='div', attrs={ 'class': 'po_rtcol' }) ]
 
 
     def get_browser(self):
