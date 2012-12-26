@@ -8,6 +8,7 @@ Lemonde.fr: Version abonnée
 
 
 import os, zipfile, re, time
+from urllib2 import HTTPError
 from calibre.constants import preferred_encoding
 
 from calibre.web.feeds.news import BasicNewsRecipe
@@ -68,13 +69,15 @@ class LeMondeAbonne(BasicNewsRecipe):
         second = time.time()
         second += self.decalage
 
-        self.ltime = time.gmtime(second)
-
-        url = time.strftime(self.zipurl_format,self.ltime)
-
-        self.timefmt=time.strftime(" %A %d %B %Y", self.ltime).decode(preferred_encoding)
-
-        response = browser.open(url)
+        for i in range(7):
+            self.ltime = time.gmtime(second)
+            self.timefmt=time.strftime(" %A %d %B %Y",self.ltime).decode(preferred_encoding)
+            url = time.strftime(self.zipurl_format,self.ltime)
+            try:
+                response = browser.open(url)
+                continue
+            except HTTPError, e:
+                second -= 24*60*60
 
         tmp = PersistentTemporaryFile(suffix='.zip')
         self.report_progress(0.1,_('downloading zip file'))
