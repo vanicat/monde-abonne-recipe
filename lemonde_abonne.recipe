@@ -120,7 +120,7 @@ class LeMondeAbonne(BasicNewsRecipe):
                 article = {
                     'title': link.contents[0],
                     'url': article_url + article_id,
-                    'descripion': '',
+                    'description': '',
                     'content': ''
                     }
                 articles.append(article)
