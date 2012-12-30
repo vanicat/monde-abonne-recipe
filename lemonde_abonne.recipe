@@ -117,6 +117,38 @@ class LeMondeAbonne(BasicNewsRecipe):
             tmp = open(filename,'r')
             soup=BeautifulSoup(tmp)
             title=soup.find('span').contents[0]
+            if title=="Une":
+                title="À la une"
+            if title=="Evenement":
+                title="L'événement"
+            if title=="Planete":
+                title="Planète"
+            if title=="Economie - Entreprises":
+                title="Économie"
+            if title=="L'Oeil du Monde":
+                title="L'œil du Monde"
+            if title=="Enquete":
+                title="Enquête"
+            if title=="Editorial - Analyses":
+                title="Analyses"
+            if title=="Le Monde Economie":
+                title="Économie"
+            if title=="Le Monde Culture et idées":
+                title="Idées"
+            if title=="Le Monde Géo et politique":
+                title="Géopolitique"
+            if title=="Lettre et chronique":
+                continue
+            if title=="Météo - Jeux - Ecrans":
+                continue
+            if title=="Le Monde des Livres":
+                continue
+            if title=="Sports":
+                continue
+            if title=="Le Monde Sport et forme":
+                continue
+            if title=="Le Monde TéléVision":
+                continue
             tmp.close()
 
             filename = os.path.join(path, "frame_gauche_%d.html" % (i + 1))
