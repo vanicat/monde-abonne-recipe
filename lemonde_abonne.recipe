@@ -18,9 +18,10 @@ from calibre.ptempfile import PersistentTemporaryFile
 class LeMondeAbonne(BasicNewsRecipe):
 
     title                 = u'Le Monde: Édition abonnés'
-    __author__            = 'Rémi Vanicat'
+    __author__            = u'Rémi Vanicat'
     description           = u'Actualités'
-    category              = 'Actualités, France, Monde'
+    category              = u'Actualités, France, Monde'
+    publisher             = 'Le Monde'
     language              = 'fr'
     needs_subscription    = True
 
