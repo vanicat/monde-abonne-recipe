@@ -27,19 +27,19 @@ class LeMondeAbonne(BasicNewsRecipe):
     no_stylesheets        = True
     smarten_punctuation   = True
     remove_attributes     = [ 'border', 'cellspacing', 'display', 'align', 'cellpadding', 'colspan', 'valign', 'vscape', 'hspace', 'alt', 'width', 'height']
-    extra_css = ''' li{margin:6pt 0 !important}
-                    ul{margin:0 !important}
+    extra_css = ''' li{margin:6pt 0}
+                    ul{margin:0}
 
-                    div.photo img{max-width:100%; border:0px transparent solid !important;}
+                    div.photo img{max-width:100%; border:0px transparent solid;}
                     div.photo{font-family:inherit; color:#333; text-align:center;}
                     div.photo p{text-align:justify;font-size:.9em; line-height:.9em;}
 
                     @page{margin:10pt}
-                    .ar-txt {color:#000 !important; text-align:justify !important;}
-                    h1{text-align:left !important; font-size:1.25em;}
+                    .ar-txt {color:#000; text-align:justify;}
+                    h1{text-align:left; font-size:1.25em;}
 
                     .auteur{text-align:right; font-weight:bold}
-                    .feed{text-align:right; font-weight:bold !important}
+                    .feed{text-align:right; font-weight:bold}
                     .po-ti2{font-weight:bold}
                     .fen-tt{font-weight:bold;font-size:1.1em}
     '''
