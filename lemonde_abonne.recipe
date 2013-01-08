@@ -115,7 +115,7 @@ class LeMondeAbonne(BasicNewsRecipe):
         for i in range(nb_index_files):
             filename = os.path.join(path, "selection_%d.html" % (i + 1))
             tmp = open(filename,'r')
-            soup=BeautifulSoup(tmp)
+            soup=BeautifulSoup(tmp,convertEntities=BeautifulSoup.HTML_ENTITIES)
             title=soup.find('span').contents[0]
             if title=="Une":
                 title="À la une"
@@ -137,18 +137,6 @@ class LeMondeAbonne(BasicNewsRecipe):
                 title="Idées"
             if title=="Le Monde Géo et politique":
                 title="Géopolitique"
-            if title=="Lettre et chronique":
-                continue
-            if title=="Météo - Jeux - Ecrans":
-                continue
-            if title=="Le Monde des Livres":
-                continue
-            if title=="Sports":
-                continue
-            if title=="Le Monde Sport et forme":
-                continue
-            if title=="Le Monde TéléVision":
-                continue
             tmp.close()
 
             filename = os.path.join(path, "frame_gauche_%d.html" % (i + 1))
