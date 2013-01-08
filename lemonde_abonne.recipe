@@ -1,7 +1,7 @@
 #!/usr/bin/env  python
 
 __license__   = 'GPL v3'
-__copyright__ = '2012, Rémi Vanicat <vanicat at debian.org>'
+__copyright__ = '2012, 2013, Rémi Vanicat <vanicat at debian.org>'
 '''
 Lemonde.fr: Version abonnée
 '''
