@@ -47,7 +47,7 @@ class LeMondeAbonne(BasicNewsRecipe):
     zipurl_format = 'http://medias.lemonde.fr/abonnes/editionelectronique/%Y%m%d/html/%y%m%d.zip'
     coverurl_format = '/img/%y%m%d01.jpg'
     path_format = "%y%m%d"
-    login_url = 'http://www.lemonde.fr/web/journal_electronique/identification/1,56-0,45-0,0.html'
+    login_url = 'https://secure.lemonde.fr/sfuser/connexion'
 
     keep_only_tags = [dict(name=['h1']), dict(name='div', attrs={ 'class': 'photo' }), dict(name='div', attrs={ 'class': 'po-ti2' }), dict(name='div', attrs={ 'class': 'ar-txt' }), dict(name='div', attrs={ 'class': 'po_rtcol' }) ]
 
